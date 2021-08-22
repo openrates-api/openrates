@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="API with updated forex rates and currency conversion. Rates published by European Central Bank.">
+    <title>OpenRates - API with updated forex rates and currency conversion</title>
+
+    <link rel="canonical" href="https://openrates.net">
+
+    <!-- Bootstrap core CSS -->
+<link href="./static/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="./static/starter-template.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <span class="fs-1">OpenRates API</span>
+    </a>
+  </header>
+
+  <h2>Getting started</h2>
+  <p class="fs-5 col-md-8">OpenRates is a free and open-source API for current and historical foreign exchange (forex) rates. All currency data is sourced from the European Central Bank and updated daily at around 4:00PM CET.</p>
+ <p class="fs-5 col-md-8"> The OpenRates API allow for historical queries back to 1999 and supports 30+ currencies.</p>
+
+  <hr class="col-3 col-md-2 mb-5">
+
+  <div class="row g-1">
+    <div class="col-md-8 col-lg-6">
+      <h3>Latest Rates</h3>
+      <p>Query the API for the latest available rates.</p>
+      <code class="request"><a target="_blank" href="https://api.openrates.net/latest">https://api.openrates.net/latest</a></code>
+    </div>
+
+    <div class="col-md-8 col-lg-6">
+      <h3>Historical Rates</h3>
+      <p>Query the API for historical rates since January 4, 1999. The date format is YYYY-MM-DD.</p>
+      <code class="request"><a target="_blank" href="https://api.openrates.net/2000-01-03">https://api.openrates.net/2001-01-03</a></code>
+    </div>
+
+    <div class="col-md-8 col-lg-6">
+      <h3>Historical Rates (Base)</h3>
+      <p>Query the API for historical rates since January 4, 1999 using a different base. The date format is YYYY-MM-DD.</p>
+      <code class="request"><a target="_blank" href="https://api.openrates.net/2000-01-03?base=JPY">https://api.openrates.net/2001-01-03?base=JPY</a></code>
+    </div>
+
+    <div class="col-md-8 col-lg-6">
+      <h3>Base Currency</h3>
+      <p>The default base currency is Euro. Change the base currency using a 3-letter currency code.</p>
+      <code class="request"><a target="_blank" href="https://api.openrates.net/latest?base=JPY">https://api.openrates.net/latest?base=JPY</a></code>
+    </div>
+    <div class="col-md-8 col-lg-6">
+      <h3>Specify Currencies</h3>
+      <p>You can also limit the API result to specific currencies. In order to do so, specify the symbols parameter and set it to your preferred list of comma-separated 3-letter currency codes.</p>
+      <code class="request"><a target="_blank" href="https://api.openrates.net/latest?symbols=JPY,GBP">https://api.openrates.net/latest?symbols=JPY,GBP</a></code>
+    </div>
+    <div class="col-md-8 col-lg-6">
+      <h3>Specify Currencies (Base)</h3>
+      <p>You can also limit the API result to specific currencies with a different base. In order to do so, specify the symbols parameter and set it to your preferred list of comma-separated 3-letter currency codes followed by a different base.</p>
+      <code class="request"><a target="_blank" href="https://api.openrates.net/latest?symbols=JPY,GBP">https://api.openrates.net/latest?symbols=JPY,GBP&base=NZD</a></code>
+    </div>
+  </div>
+
+ <footer class="my-5 pt-5 text-muted text-center text-small border-top">
+    <p class="mb-1">&copy; 2021 <span>OpenRates</span></p>
+      <li class="list-inline-item"><a href="#">Source</a></li>
+      <li class="list-inline-item"><a rel="email me" href="mailto:contact@openrates.net" title="Send me an email" target="_blank">Contact</a></li>
+    </ul>
+  </footer>
+</div>
+
+    <script src="./static/bootstrap.bundle.min.js"></script>
+      
+  </body>
+</html>
