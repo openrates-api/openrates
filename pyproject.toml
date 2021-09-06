@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "openrates"
-version = "0.1.0"
-description = "API for forex rates and currency conversion"
+version = "0.2.0"
+description = ""
 authors = ["Brian <contact@openrates.net>"]
 
 [tool.poetry.dependencies]
@@ -10,13 +10,9 @@ fastapi = "^0.63.0"
 SQLAlchemy = "^1.4.17"
 requests = "^2.25.1"
 APScheduler = "^3.7.0"
-uvicorn = "^0.15.0"
-aiofiles = "^0.7.0"
-pandas = "^1.3.2"
-Jinja2 = "^3.0.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^6.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
