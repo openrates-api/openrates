@@ -29,8 +29,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 async def download_rates(daily=True):
-    euro_forex_daily_url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref.zip?1525f4aec52b7ebeba18eeac117f332c"
-    euro_forex_all_url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip?1525f4aec52b7ebeba18eeac117f332c"
+    """Downloads daily or historical data. Defaults to daily."""
+
+    euro_forex_daily_url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref.zip"
+    euro_forex_all_url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip"
 
     if daily:
         zip_file = "eurofxref.zip"
@@ -55,6 +57,10 @@ async def download_rates(daily=True):
 
 
 async def import_data(csv_path):
+    """Uses pandas to read daily CSV file.
+    Parses data then imports into sqlite.
+    """
+
     df = pandas.read_csv(csv_path)
     df_list = df.values
     currencies = [
@@ -109,6 +115,10 @@ async def import_data(csv_path):
 
 
 async def import_hist_data(csv_path):
+    """Uses pandas to read historical CSV file.
+    Parses data then imports into sqlite.
+    """
+
     df = pandas.read_csv(csv_path)
     df_list = df.values
     currencies = [
@@ -177,6 +187,10 @@ async def import_hist_data(csv_path):
 
 @app.on_event("startup")
 async def initialize_scheduler():
+    """Cron schedule to download daily file each weekday and
+    historical file twice a month.
+    """
+
     scheduler = AsyncIOScheduler()
     try:
         scheduler.add_job(
@@ -209,6 +223,8 @@ async def initialize_scheduler():
 @app.get("/latest")
 async def latest(base: Optional[str] = None,
                  symbols: Optional[str] = None):
+    """API route for latest rates."""
+
     if not base:
         base = "EUR"
     latest_date = session.query(func.max(Currency.date)).first()
@@ -218,6 +234,14 @@ async def latest(base: Optional[str] = None,
         .filter(func.date(Currency.date) == latest_date, Currency.currency == base)
         .first()
     )
+    if base_rate[0] is None:
+        base = "EUR"
+        base_rate = (
+            session.query(Currency.rate, func.max(Currency.date))
+            .filter(func.date(Currency.date) == latest_date,
+           Currency.currency == base)
+            .first()
+        )
     currencies = (
         session.query(Currency.currency, Currency.rate)
         .filter(func.date(Currency.date) == latest_date)
@@ -252,6 +276,8 @@ async def latest(base: Optional[str] = None,
 
 @app.get("/{date}")
 async def historical(base: Optional[str] = None, date=None):
+    """API route for rates based on date input."""
+
     if not base:
         base = "EUR"
     base_rate = (
@@ -259,6 +285,14 @@ async def historical(base: Optional[str] = None, date=None):
         .filter(func.date(Currency.date) == date, Currency.currency == base)
         .first()
     )
+    if base_rate[0] is None:
+        base = "EUR"
+        base_rate = (
+            session.query(Currency.rate, func.max(Currency.date))
+            .filter(func.date(Currency.date) == date,
+            Currency.currency == base)
+            .first()
+        )
     currencies = (
         session.query(Currency.currency, Currency.rate)
         .filter(func.date(Currency.date) == date)
@@ -283,4 +317,6 @@ async def historical(base: Optional[str] = None, date=None):
 
 @app.get("/")
 async def index(request: Request):
+    """Route for main page."""
+
     return templates.TemplateResponse("index.html", {"request": request})
