@@ -2,7 +2,7 @@ from collections import OrderedDict
 from datetime import datetime
 from typing import Optional
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import create_engine, func, exc
@@ -221,6 +221,7 @@ async def initialize_scheduler():
 
 
 @app.get("/latest")
+@app.get("/api/latest")
 async def latest(base: Optional[str] = None,
                  symbols: Optional[str] = None):
     """API route for latest rates."""
@@ -275,11 +276,24 @@ async def latest(base: Optional[str] = None,
 
 
 @app.get("/{date}")
-async def historical(base: Optional[str] = None, date=None):
+@app.get("/api/{date}")
+async def historical(base: Optional[str] = None, date: Optional[str] = None):
     """API route for rates based on date input."""
 
     if not base:
         base = "EUR"
+
+    if date:
+        currencies = (
+            session.query(Currency.currency, Currency.rate)
+            .filter(func.date(Currency.date) == date)
+            .all()
+        )
+        if not currencies:
+            raise HTTPException(
+                status_code=404, detail="Invalid date"
+            )
+
     base_rate = (
         session.query(Currency.rate, func.max(Currency.date))
         .filter(func.date(Currency.date) == date, Currency.currency == base)
