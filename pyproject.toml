@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openrates"
-version = "0.3.1"
+version = "0.3.2"
 description = ""
 authors = ["Brian <contact@openrates.net>"]
 
