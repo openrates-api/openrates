@@ -2,7 +2,7 @@
 
 OpenRates is a free and open-source API for current and historical foreign exchange (forex) rates. All currency data is sourced from the European Central Bank and updated daily at around 4:00PM CET.
 
-The OpenRates API allow for historical queries back to 1999 and supports 30+ currencies.
+The OpenRates API allows for historical queries back to 1999 and supports 30+ currencies.
 
 ## Installation
 ```shell

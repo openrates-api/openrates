@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.4 - 2021-09-17
+
+### Added
+- Added gunicorn to use threads for uvicorn
+### Fixed
+- Fixed typo in README and index.html
+
 ## 0.3.3 - 2021-09-13
 
 ### Fixed
