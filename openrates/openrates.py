@@ -110,6 +110,9 @@ async def import_data(csv_path):
         except exc.IntegrityError:
             session.rollback()
             print("Entry exists")
+        except exc.PendingRollbackError:
+            session.rollback()
+            session.flush()
         finally:
             session.close
 
@@ -181,6 +184,9 @@ async def import_hist_data(csv_path):
                 except exc.IntegrityError:
                     session.rollback()
                     print("Entry exists")
+                except exc.PendingRollbackError:
+                    session.rollback()
+                    session.flush()
                 finally:
                     session.close
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.5 - 2021-11-08
+
+### Fixed
+- Fixed PendingRollbackError that was locking the database
+
 ## 0.3.4 - 2021-09-17
 
 ### Added
