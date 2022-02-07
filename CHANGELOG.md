@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.6 - 2022-02-07
+
+### Fixed
+- Fixed database not found issue with path
+### Added
+- Added dependencies to requirements.txt
+- Updated versions in poetry.lock and pyproject.toml
+
 ## 0.3.5 - 2021-11-08
 
 ### Fixed
