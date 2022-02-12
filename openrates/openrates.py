@@ -202,7 +202,6 @@ async def initialize_scheduler():
         scheduler.add_job(
             download_rates,
             "cron",
-            day_of_week="mon-fri",
             hour=16,
             minute=10,
             timezone="CET",
@@ -216,7 +215,7 @@ async def initialize_scheduler():
         scheduler.add_job(
             download_rates,
             "cron",
-            day='1,15',
+            day_of_week="sun",
             hour=2,
             minute=15,
             timezone="CET",
