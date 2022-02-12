@@ -1,6 +1,7 @@
 # Changelog
 
-## 0.3.6 - 2021-11-08
+## 0.3.6 - 2022-02-12
+
 ### Changed
 - Changed the frequency of daily downloads to everyday and monthly downloads to once a week.
 
