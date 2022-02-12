@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.7 - 2022-02-12
+
+### Changed
+- Changed frequency of updates for daily/monthly
+
 ## 0.3.6 - 2022-02-07
 
 ### Fixed
