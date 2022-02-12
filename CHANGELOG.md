@@ -1,9 +1,17 @@
 # Changelog
 
-## 0.3.6 - 2022-02-12
+## 0.3.7 - 2022-02-12
 
 ### Changed
 - Changed the frequency of daily downloads to everyday and monthly downloads to once a week.
+
+## 0.3.6 - 2022-02-07
+
+### Fixed
+- Fixed database not found issue with path
+### Added
+- Added dependencies to requirements.txt
+- Updated versions in poetry.lock and pyproject.toml
 
 ## 0.3.5 - 2021-11-08
 
