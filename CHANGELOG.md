@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.8 - 2022-05-01
+
+### Updated
+- Updated starlette to 0.17.1
+
 ## 0.3.7 - 2022-02-12
 
 ### Changed

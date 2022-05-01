@@ -36,7 +36,7 @@ requests
 six
 sniffio
 SQLAlchemy
-starlette==0.14.2
+starlette==0.17.1
 toml
 typing-extensions
 tzdata
